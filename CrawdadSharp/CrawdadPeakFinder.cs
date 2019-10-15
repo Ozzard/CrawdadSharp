@@ -130,7 +130,33 @@ namespace CrawdadSharp
             }
             FullWidthHalfMax = fwhm;
 
-            _widthDataWings = (int)(FullWidthHalfMax * 2);
+            int fwfpcnt = 0;
+            if (maxIntensityIndex != -1)
+            {
+                double fpcntHeight = (intensities[maxIntensityIndex] - baselineIntensity) / 20 + baselineIntensity;
+                int iBeginning = 0;
+                for (int i = maxIntensityIndex - 1; i >= 0; i--)
+                {
+                    if (intensities[i] < fpcntHeight)
+                    {
+                        iBeginning = i;
+                        break;
+                    }
+                }
+                int len = intensities.Length;
+                int iTail = len - 1;
+                for (int i = maxIntensityIndex + 1; i < len; i++)
+                {
+                    if (intensities[i] < fpcntHeight)
+                    {
+                        iTail = i;
+                        break;
+                    }
+                }
+                fwfpcnt = Math.Max(fwfpcnt, iTail - iBeginning);
+            }
+
+                _widthDataWings = (int)(FullWidthHalfMax * 2);
 
             if (_widthDataWings > 0)
             {
