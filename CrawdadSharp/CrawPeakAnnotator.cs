@@ -28,6 +28,7 @@ namespace CrawdadSharp
             //calls set_peak_areas onpeak member variables
             set_peak_bg_subtracted_area(peak);
             calc_fwhm(peak);
+            calc_fwfpcnt(peak);
         }
 
         int calc_len(int start_rt_idx, int stop_rt_idx) => stop_rt_idx - start_rt_idx + 1;
