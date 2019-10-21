@@ -7,6 +7,7 @@
         public int len;
         public float fwhm;
         public bool fwhm_calculated_ok;
+        public float fwfpct;
         public float bg_area;
         public float raw_area; // total area under the curve, including background
         public float peak_area;
